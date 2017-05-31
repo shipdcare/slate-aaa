@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:mContext="example.com.slate.MainActivity">
+
+    <RelativeLayout
+        style="@style/containerFirstScreen">
+
+        <TextView
+            android:id="@+id/tvAppName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/app_name"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/font_xlarge"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        style="@style/containerFirstScreen"
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            style="@style/llSocialIcons">
+
+            <ImageView
+                android:id="@+id/ivHome"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/circle_selector"
+                android:padding="@dimen/spacing_small"
+                android:src="@drawable/ic_home"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/llSocialIcons">
+
+            <ImageView
+                android:id="@+id/ivInsta"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/circle_selector"
+                android:padding="@dimen/spacing_small"
+                android:src="@drawable/ic_instagram"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/llSocialIcons">
+
+            <ImageView
+                android:id="@+id/ivFb"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/circle_selector"
+                android:padding="@dimen/spacing_small"
+                android:src="@drawable/ic_facebook"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/llSocialIcons">
+
+            <ImageView
+                android:id="@+id/ivTwitter"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:background="@drawable/circle_selector"
+                android:padding="@dimen/spacing_small"
+                android:src="@drawable/ic_twitter"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/containerFirstScreen"
+        android:layout_weight="0.8"
+        android:background="@color/colorWhite">
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vpCategories"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
