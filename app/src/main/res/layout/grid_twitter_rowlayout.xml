@@ -6,8 +6,8 @@
     android:orientation="vertical">
 
 
-    <util.SquareImageView
-        android:id="@+id/ivGridView"
+    <util.TwitterImageView
+        android:id="@+id/ivTwitterGridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scaleType="centerCrop"

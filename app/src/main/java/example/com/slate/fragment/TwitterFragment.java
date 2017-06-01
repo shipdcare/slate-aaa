@@ -15,10 +15,12 @@ import example.com.slate.adapter.CommonRvAdapter;
 import util.GridItemDecoration;
 
 /**
- * Created by mark-42 on 31/5/17.
+ * Created by mark-42 on 1/6/17.
  */
 
-public class InstaFragment extends BaseFragment {
+public class TwitterFragment extends BaseFragment {
+
+
     private RecyclerView rvInstaFrag;
     private ArrayList<Integer> list;
 
@@ -30,6 +32,7 @@ public class InstaFragment extends BaseFragment {
         return view;
     }
 
+
     /**
      * Initialize all the views
      *
@@ -38,15 +41,17 @@ public class InstaFragment extends BaseFragment {
     private void init(final View view) {
         rvInstaFrag = (RecyclerView) view.findViewById(R.id.rvCommonFragment);
         list = new ArrayList<>();
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.second);
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.second);
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.second);
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.second);
-        CommonRvAdapter adapter = new CommonRvAdapter(getContext(), list, INSTA_FRAG);
+        list.add(R.drawable.fb_1);
+        list.add(R.drawable.fb_2);
+        list.add(R.drawable.fb_3);
+        list.add(R.drawable.fb_1);
+        list.add(R.drawable.fb_2);
+
+        list.add(R.drawable.fb_3);
+        list.add(R.drawable.fb_1);
+        list.add(R.drawable.fb_2);
+        list.add(R.drawable.fb_3);
+        CommonRvAdapter adapter = new CommonRvAdapter(getContext(), list, TWITTER_FRAG);
         rvInstaFrag.setAdapter(adapter);
         rvInstaFrag.setLayoutManager(new GridLayoutManager(getContext(), 2));
         rvInstaFrag.addItemDecoration(new GridItemDecoration(2, 2, true, 0));

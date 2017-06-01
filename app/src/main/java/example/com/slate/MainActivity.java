@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import example.com.slate.adapter.PagerAdapter;
+import example.com.slate.fragment.FbFragment;
 import example.com.slate.fragment.HomeFragment;
 import example.com.slate.fragment.InstaFragment;
+import example.com.slate.fragment.TwitterFragment;
 
 /**
  * Landing screen of the app
@@ -48,9 +50,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 break;
             case R.id.ivFb:
                 changeColors(2);
+                pager.setCurrentItem(2);
                 break;
             case R.id.ivTwitter:
                 changeColors(3);
+                pager.setCurrentItem(3);
                 break;
             default:
                 break;
@@ -74,8 +78,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         ivInsta.setOnClickListener(this);
         ivFb.setOnClickListener(this);
         ivTwitter.setOnClickListener(this);
+        changeColors(0);
         fragmentList.add(new HomeFragment());
         fragmentList.add(new InstaFragment());
+        fragmentList.add(new FbFragment());
+        fragmentList.add(new TwitterFragment());
     }
 
     /**

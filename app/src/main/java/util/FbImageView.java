@@ -5,15 +5,18 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 
+import example.com.slate.constant.AppConstant;
+
 /**
- * Created by mark-42 on 3/5/17.
+ * Created by mark-42 on 1/6/17.
  */
 
-public class SquareImageView extends AppCompatImageView {
+public class FbImageView extends AppCompatImageView implements AppConstant {
+
     /**
      * @param context context
      */
-    public SquareImageView(final Context context) {
+    public FbImageView(final Context context) {
         super(context);
     }
 
@@ -21,7 +24,7 @@ public class SquareImageView extends AppCompatImageView {
      * @param context context
      * @param attrs   attars
      */
-    public SquareImageView(final Context context, @Nullable final AttributeSet attrs) {
+    public FbImageView(final Context context, @Nullable final AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -30,7 +33,7 @@ public class SquareImageView extends AppCompatImageView {
      * @param attrs        attrs
      * @param defStyleAttr defstyleattr
      */
-    public SquareImageView(final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr) {
+    public FbImageView(final Context context, @Nullable final AttributeSet attrs, final int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -39,7 +42,6 @@ public class SquareImageView extends AppCompatImageView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         int width = getMeasuredWidth();
-        setMeasuredDimension(width, width);
+        setMeasuredDimension(width, width - NEW_FB_HEIGHT);
     }
-
 }
