@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Slate</string>
+    <string name="text">Text</string>
+    <string name="elements">Elements</string>
+    <string name="layouts">Layouts</string>
+    <string name="pages">Pages</string>
 </resources>

@@ -1,6 +1,7 @@
 package example.com.slate.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
+import example.com.slate.EditorActivity;
 import example.com.slate.R;
 import example.com.slate.constant.AppConstant;
 import util.FbImageView;
@@ -27,7 +29,7 @@ public class CommonRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     /**
      * @param mContext mContext of the call fragment or activity
-     * @param imageIds array list of the images to be inflatedx
+     * @param imageIds array list of the images to be inflated
      * @param mFragNum number of the fragment calling Adapter
      */
     public CommonRvAdapter(final Context mContext, final ArrayList<Integer> imageIds, final int mFragNum) {
@@ -64,6 +66,13 @@ public class CommonRvAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         switch (holder.getItemViewType()) {
             case HOME_FRAG:
                 HomeViewHolder homeVh = (HomeViewHolder) holder;
+                homeVh.ivHomeTemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        Intent intent = new Intent(mContext, EditorActivity.class);
+                        mContext.startActivity(intent);
+                    }
+                });
                 homeVh.ivHomeTemp.setImageResource(id);
                 break;
             case INSTA_FRAG:

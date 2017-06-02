@@ -6,4 +6,7 @@
     <color name="colorWhite">#FFF</color>
     <color name="iconsSelected">#99cccccc</color>
     <color name="iconsUnselected">#33000000</color>
+    <color name="editorBg">#0E1317</color>
+    <color name="bottomNavBg">#1C232D</color>
+    <color name="bottomNavText">#AAAAAA</color>
 </resources>

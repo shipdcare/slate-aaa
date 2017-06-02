@@ -12,4 +12,6 @@ public interface AppConstant {
     int NEW_FB_HEIGHT = 50;
     int NEW_TWITTER_HEIGHT = 150;
 
+    int ELEMENTS_FRAG = 202;
+
 }

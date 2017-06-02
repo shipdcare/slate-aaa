@@ -2,8 +2,8 @@ package example.com.slate.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +11,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import example.com.slate.R;
-import example.com.slate.adapter.CommonRvAdapter;
-import util.GridItemDecoration;
+import example.com.slate.adapter.EditorCommonAdapter;
 
 /**
- * Created by mark-42 on 31/5/17.
+ * Created by mark-42 on 1/6/17.
  */
 
-public class HomeFragment extends BaseFragment {
-
+public class TextFragment extends BaseFragment {
     private RecyclerView rvInstaFrag;
     private ArrayList<Integer> list;
 
@@ -39,17 +37,17 @@ public class HomeFragment extends BaseFragment {
     private void init(final View view) {
         rvInstaFrag = (RecyclerView) view.findViewById(R.id.rvCommonFragment);
         list = new ArrayList<>();
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.fb_1);
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.fb_1);
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.fb_1);
-        list.add(R.drawable.thumbnail_large);
-        list.add(R.drawable.fb_1);
-        CommonRvAdapter adapter = new CommonRvAdapter(getContext(), list, HOME_FRAG);
+        list.add(R.drawable.text1);
+        list.add(R.drawable.text2);
+        list.add(R.drawable.text4);
+        list.add(R.drawable.text1);
+        list.add(R.drawable.text2);
+        list.add(R.drawable.text4);
+        list.add(R.drawable.ic_check_box_empty);
+        list.add(R.drawable.ic_circle_shape_outline);
+        list.add(R.drawable.ic_check_box_empty);
+        EditorCommonAdapter adapter = new EditorCommonAdapter(getContext(), list, ELEMENTS_FRAG);
+        rvInstaFrag.setLayoutManager(new GridLayoutManager(getContext(), 3));
         rvInstaFrag.setAdapter(adapter);
-        rvInstaFrag.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        rvInstaFrag.addItemDecoration(new GridItemDecoration(2, 1, true, 0));
     }
 }
