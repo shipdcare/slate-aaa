@@ -1,4 +1,4 @@
-package example.com.slate;
+package example.com.slate.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;

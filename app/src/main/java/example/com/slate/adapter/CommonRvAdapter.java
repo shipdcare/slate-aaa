@@ -10,8 +10,8 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-import example.com.slate.EditorActivity;
 import example.com.slate.R;
+import example.com.slate.activity.EditorActivity;
 import example.com.slate.constant.AppConstant;
 import util.FbImageView;
 import util.InstaImageView;

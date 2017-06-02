@@ -9,4 +9,10 @@
     <color name="editorBg">#0E1317</color>
     <color name="bottomNavBg">#1C232D</color>
     <color name="bottomNavText">#AAAAAA</color>
+    <color name="firstColor">#ff5c5c</color>
+    <color name="secondColor">#ffbd4a</color>
+    <color name="thirdColor">#fff952</color>
+    <color name="fourthColor">#99e265</color>
+    <color name="fifthColor">#35b729</color>
+    <color name="sixthColor">#44d9e6</color>
 </resources>

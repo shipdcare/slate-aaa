@@ -9,6 +9,15 @@
     </style>
 
 
+    <!-- Base application theme. -->
+    <style name="EditorTheme" parent="AppTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/editorBg</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
     <style name="containerFirstScreen">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
@@ -29,6 +38,13 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">@drawable/text_selector</item>
         <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/font_xsmall</item>
+        <item name="android:layout_marginTop">@dimen/spacing_tiny</item>
+    </style>
+
+    <style name="colorViews">
+        <item name="android:layout_width">@dimen/color_view_width</item>
+        <item name="android:layout_height">@dimen/color_view_height</item>
     </style>
 
 

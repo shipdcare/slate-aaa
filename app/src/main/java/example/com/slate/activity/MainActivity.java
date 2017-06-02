@@ -1,4 +1,4 @@
-package example.com.slate;
+package example.com.slate.activity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.com.slate.R;
 import example.com.slate.adapter.PagerAdapter;
 import example.com.slate.fragment.FbFragment;
 import example.com.slate.fragment.HomeFragment;

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/editorBg"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_small">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivSelectedColors"
+        style="@style/colorViews"
+        android:background="@color/sixthColor"
+        app:riv_corner_radius="30dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="true"/>
+
+</LinearLayout>

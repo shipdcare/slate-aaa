@@ -11,7 +11,9 @@ public interface AppConstant {
     int TWITTER_FRAG = 103;
     int NEW_FB_HEIGHT = 50;
     int NEW_TWITTER_HEIGHT = 150;
-
     int ELEMENTS_FRAG = 202;
+    int DENSITY = 12;
+    int CURRENT_BACKGROUND_COLOR = 0xffffffff;
+
 
 }

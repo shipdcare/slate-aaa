@@ -1,4 +1,4 @@
-package example.com.slate;
+package example.com.slate.activity;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,7 +9,9 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import example.com.slate.R;
 import example.com.slate.adapter.PagerAdapter;
+import example.com.slate.fragment.ColorPickerFragment;
 import example.com.slate.fragment.TextFragment;
 import util.CustomViewPager;
 
@@ -29,6 +31,7 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
         PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), fragmentList);
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(this);
+        pager.setCurrentItem(0);
     }
 
     /**
@@ -41,10 +44,11 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
         tvLayouts = (TextView) findViewById(R.id.tvLayouts);
         tvPages = (TextView) findViewById(R.id.tvPages);
         pager = (CustomViewPager) findViewById(R.id.vpEditor);
-        tvPages.setOnClickListener(this);
+        tvText.setOnClickListener(this);
         tvElements.setOnClickListener(this);
         tvLayouts.setOnClickListener(this);
         tvPages.setOnClickListener(this);
+        fragmentList.add(new ColorPickerFragment());
         fragmentList.add(new TextFragment());
     }
 
@@ -54,10 +58,10 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
         switch (v.getId()) {
             case R.id.tvText:
                 changeColors(0);
+                pager.setCurrentItem(1);
                 break;
             case R.id.tvElements:
                 changeColors(1);
-                pager.setCurrentItem(0);
                 break;
             case R.id.tvLayouts:
                 changeColors(2);

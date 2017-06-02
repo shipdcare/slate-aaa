@@ -3,5 +3,9 @@
     <string name="text">Text</string>
     <string name="elements">Elements</string>
     <string name="layouts">Layouts</string>
-    <string name="pages">Pages</string>
+    <string name="upload">Upload</string>
+    <string name="choose_color">Choose Color</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="share">Share</string>
 </resources>

@@ -6,17 +6,21 @@
     android:layout_height="match_parent"
     android:background="@color/editorBg"
     android:orientation="vertical"
-    tools:context="example.com.slate.EditorActivity">
+    tools:context="example.com.slate.activity.EditorActivity">
+
+    <include layout="@layout/top_editor_toolbar"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.6"/>
+        android:layout_weight="0.6"
+        android:background="@color/bottomNavBg"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3">
+        android:layout_weight="0.2">
 
 
         <util.CustomViewPager
@@ -28,40 +32,7 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.1"
-        android:orientation="horizontal"
-        android:padding="@dimen/spacing_tiny">
-
-
-        <TextView
-            android:id="@+id/tvText"
-            style="@style/tvBottomNavEditor"
-            android:drawableTop="@drawable/ic_elements_black_24dp"
-            android:text="@string/text"/>
-
-        <TextView
-            android:id="@+id/tvElements"
-            style="@style/tvBottomNavEditor"
-            android:drawableTop="@drawable/ic_elements_black_24dp"
-            android:text="@string/elements"/>
-
-        <TextView
-            android:id="@+id/tvLayouts"
-            style="@style/tvBottomNavEditor"
-            android:drawableTop="@drawable/ic_layouts_black_24dp"
-            android:text="@string/layouts"/>
-
-        <TextView
-            android:id="@+id/tvPages"
-            style="@style/tvBottomNavEditor"
-            android:drawableTop="@drawable/ic_upload"
-            android:text="@string/pages"/>
-
-
-    </LinearLayout>
+    <include layout="@layout/bottom_nav_editor"/>
 
 
 </LinearLayout>

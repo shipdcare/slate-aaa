@@ -45,4 +45,9 @@
     <dimen name="app_bar_height">280dp</dimen>
     <dimen name="view_height">20dp</dimen>
     <dimen name="line_thickness">1dp</dimen>
+
+    <dimen name="color_view_width">30dp</dimen>
+    <dimen name="color_view_height">30dp</dimen>
+
+    <dimen name="slider_height">48dp</dimen>
 </resources>
