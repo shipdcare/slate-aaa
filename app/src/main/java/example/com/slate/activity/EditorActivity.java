@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -13,15 +14,20 @@ import example.com.slate.R;
 import example.com.slate.adapter.PagerAdapter;
 import example.com.slate.fragment.ColorPickerFragment;
 import example.com.slate.fragment.TextFragment;
+import example.com.slate.model.CommonResponse;
+import util.CommonInterface;
+import util.CustomCanvasView;
 import util.CustomViewPager;
 
 /**
  * Editor Screen
  */
-public class EditorActivity extends BaseActivity implements ViewPager.OnPageChangeListener {
+public class EditorActivity extends BaseActivity implements ViewPager.OnPageChangeListener, CommonInterface {
     private List<Fragment> fragmentList;
     private CustomViewPager pager;
     private TextView tvText, tvElements, tvLayouts, tvPages;
+    private LinearLayout llCanvas;
+    private CustomCanvasView mCustomCanvasView;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(this);
         pager.setCurrentItem(0);
+        pager.setPagingEnabled(false);
     }
 
     /**
@@ -50,6 +57,9 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
         tvPages.setOnClickListener(this);
         fragmentList.add(new ColorPickerFragment());
         fragmentList.add(new TextFragment());
+        llCanvas = (LinearLayout) findViewById(R.id.llCanvas);
+        mCustomCanvasView = new CustomCanvasView(this);
+        llCanvas.addView(mCustomCanvasView);
     }
 
     @Override
@@ -115,5 +125,16 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
             default:
                 break;
         }
+    }
+
+
+    @Override
+    public void addColor(final int colorId) {
+
+    }
+
+    @Override
+    public void sendSvgString(final CommonResponse response) {
+        mCustomCanvasView.receiveObj(response);
     }
 }

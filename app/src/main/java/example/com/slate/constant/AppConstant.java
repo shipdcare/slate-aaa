@@ -14,6 +14,12 @@ public interface AppConstant {
     int ELEMENTS_FRAG = 202;
     int DENSITY = 12;
     int CURRENT_BACKGROUND_COLOR = 0xffffffff;
+    int NONE = 0;
+    int DRAG = 1;
+    int ZOOM = 2;
+    float SCALE_FACTOR = 1.0f;
+    float MIN_SCALE_VAL = 10f;
+    float MAX_SCALE_VAL = 50f;
 
 
 }

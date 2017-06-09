@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#189ACA</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorWhite">#FFF</color>
+    <color name="transparent">#0000</color>
     <color name="iconsSelected">#99cccccc</color>
     <color name="iconsUnselected">#33000000</color>
     <color name="editorBg">#0E1317</color>

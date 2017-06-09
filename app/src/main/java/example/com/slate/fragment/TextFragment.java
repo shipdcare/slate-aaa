@@ -11,7 +11,12 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import example.com.slate.R;
+import example.com.slate.activity.EditorActivity;
 import example.com.slate.adapter.EditorCommonAdapter;
+import example.com.slate.model.CommonResponse;
+import example.com.slate.model.Objects;
+import example.com.slate.model.ViewBox;
+import util.CommonInterface;
 
 /**
  * Created by mark-42 on 1/6/17.
@@ -19,7 +24,10 @@ import example.com.slate.adapter.EditorCommonAdapter;
 
 public class TextFragment extends BaseFragment {
     private RecyclerView rvInstaFrag;
-    private ArrayList<Integer> list;
+    private ArrayList<CommonResponse> list;
+    private CommonResponse response;
+    private Objects data;
+    private ViewBox viewBox;
 
     @Nullable
     @Override
@@ -37,15 +45,18 @@ public class TextFragment extends BaseFragment {
     private void init(final View view) {
         rvInstaFrag = (RecyclerView) view.findViewById(R.id.rvCommonFragment);
         list = new ArrayList<>();
-        list.add(R.drawable.text1);
-        list.add(R.drawable.text2);
-        list.add(R.drawable.text4);
-        list.add(R.drawable.text1);
-        list.add(R.drawable.text2);
-        list.add(R.drawable.text4);
-        list.add(R.drawable.ic_check_box_empty);
-        list.add(R.drawable.ic_circle_shape_outline);
-        list.add(R.drawable.ic_check_box_empty);
+        response = new CommonResponse();
+        data = new Objects();
+        viewBox = new ViewBox();
+        viewBox.setWidth(150);
+        viewBox.setHeight(150);
+        data.setX(10);
+        data.setY(75);
+        data.setFill("#ffffff");
+        data.setFontSize(50);
+        response.setViewBox(viewBox);
+        response.setObjects(data);
+        list.add(response);
         EditorCommonAdapter adapter = new EditorCommonAdapter(getContext(), list, ELEMENTS_FRAG);
         rvInstaFrag.setLayoutManager(new GridLayoutManager(getContext(), 3));
         rvInstaFrag.setAdapter(adapter);

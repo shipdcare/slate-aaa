@@ -18,28 +18,29 @@ import java.util.ArrayList;
 
 import example.com.slate.R;
 import example.com.slate.constant.AppConstant;
-import util.AddColorInterface;
+import example.com.slate.model.EditorColors;
+import util.CommonInterface;
 
 /**
  * Created by mark-42 on 2/6/17.
  */
 
 public class SelectedColorsAdapter extends RecyclerView.Adapter<SelectedColorsAdapter.ViewHolder> implements AppConstant {
-    private AddColorInterface addColorInterface;
+    private CommonInterface commonInterface;
     private Context mContext;
-    private ArrayList<Integer> list;
+    private ArrayList<EditorColors> list;
 
 
     /**
      * @param mContext          mContext of the call fragment or activity
      * @param list              array list of the images to be inflated
-     * @param addColorInterface interface
+     * @param commonInterface interface
      */
-    public SelectedColorsAdapter(final Context mContext, final ArrayList<Integer> list,
-                                 final AddColorInterface addColorInterface) {
+    public SelectedColorsAdapter(final Context mContext, final ArrayList<EditorColors> list,
+                                 final CommonInterface commonInterface) {
         this.mContext = mContext;
         this.list = list;
-        this.addColorInterface = addColorInterface;
+        this.commonInterface = commonInterface;
     }
 
     @Override
@@ -49,20 +50,30 @@ public class SelectedColorsAdapter extends RecyclerView.Adapter<SelectedColorsAd
     }
 
     @Override
-    public void onBindViewHolder(final SelectedColorsAdapter.ViewHolder holder, final int position) {
-        int color = list.get(holder.getAdapterPosition());
-        if (holder.getAdapterPosition() == 0) {
+    public void onBindViewHolder(final SelectedColorsAdapter.ViewHolder holder, final int pos) {
+        final int position = holder.getAdapterPosition();
+        final int color = list.get(holder.getAdapterPosition()).getColorId();
+        if (position == 0) {
+            holder.ivSelectedColors.setBorderWidth(R.dimen.no_border_width);
+            holder.ivSelectedColors.setBorderColor(ContextCompat.getColor(mContext, R.color.transparent));
             holder.ivSelectedColors.setBackgroundColor(ContextCompat.getColor(mContext, R.color.bottomNavBg));
             holder.ivSelectedColors.setImageResource(R.drawable.ic_add_black_24dp);
         } else {
             holder.ivSelectedColors.setBackgroundColor(color);
+            if (list.get(position).isSelected()) {
+                holder.ivSelectedColors.setBorderWidth(R.dimen.border_width);
+                holder.ivSelectedColors.setBorderColor(ContextCompat.getColor(mContext, R.color.colorWhite));
+            } else {
+                holder.ivSelectedColors.setBorderWidth(R.dimen.no_border_width);
+                holder.ivSelectedColors.setBorderColor(ContextCompat.getColor(mContext, R.color.transparent));
+            }
         }
         holder.ivSelectedColors.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 switch (v.getId()) {
                     case R.id.ivSelectedColors:
-                        if (holder.getAdapterPosition() == 0) {
+                        if (position == 0) {
                             ColorPickerDialogBuilder
                                     .with(mContext)
                                     .setTitle(mContext.getString(R.string.choose_color))
@@ -78,7 +89,7 @@ public class SelectedColorsAdapter extends RecyclerView.Adapter<SelectedColorsAd
                                         @Override
                                         public void onClick(final DialogInterface dialog
                                                 , final int selectedColor, final Integer[] allColors) {
-                                            addColorInterface.addColor(selectedColor);
+                                            commonInterface.addColor(selectedColor);
                                         }
                                     })
                                     .setNegativeButton(mContext.getString(R.string.cancel),
@@ -89,6 +100,15 @@ public class SelectedColorsAdapter extends RecyclerView.Adapter<SelectedColorsAd
                                             })
                                     .build()
                                     .show();
+                        } else {
+                            for (int i = 0; i < list.size(); i++) {
+                                if (position == i) {
+                                    list.get(i).setSelected(true);
+                                } else {
+                                    list.get(i).setSelected(false);
+                                }
+                            }
+                            notifyDataSetChanged();
                         }
                         break;
                     default:

@@ -1,15 +1,24 @@
 package example.com.slate.adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PictureDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.caverock.androidsvg.SVG;
+import com.caverock.androidsvg.SVGParseException;
+
 import java.util.ArrayList;
 
 import example.com.slate.R;
+import example.com.slate.activity.EditorActivity;
 import example.com.slate.constant.AppConstant;
+import example.com.slate.model.CommonResponse;
+import util.CommonInterface;
+import util.CommonUtils;
 import util.InstaImageView;
 
 /**
@@ -19,20 +28,29 @@ import util.InstaImageView;
 public class EditorCommonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements AppConstant {
 
     private Context mContext;
-    private ArrayList<Integer> imageIds;
+    private ArrayList<CommonResponse> svgImages;
     private int mEditorFragNum;
+    private CommonInterface sendResponseObj;
+
+    /**
+     * @param mContext  mContext of the call fragment or activity
+     * @param svgImages array list of the images to be inflated
+     * @param mFragNum  number of the fragment calling Adapter
+     */
+    public EditorCommonAdapter(final Context mContext, final ArrayList<CommonResponse> svgImages,
+                               final int mFragNum) {
+        this.mContext = mContext;
+        this.svgImages = svgImages;
+        this.mEditorFragNum = mFragNum;
+        this.sendResponseObj = (EditorActivity) mContext;
+    }
 
     /**
      * @param mContext mContext of the call fragment or activity
-     * @param imageIds array list of the images to be inflated
-     * @param mFragNum number of the fragment calling Adapter
      */
-    public EditorCommonAdapter(final Context mContext, final ArrayList<Integer> imageIds, final int mFragNum) {
+    public EditorCommonAdapter(final Context mContext) {
         this.mContext = mContext;
-        this.imageIds = imageIds;
-        this.mEditorFragNum = mFragNum;
     }
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, final int viewType) {
@@ -48,11 +66,27 @@ public class EditorCommonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
-        int id = imageIds.get(holder.getAdapterPosition());
+        final CommonResponse response = svgImages.get(holder.getAdapterPosition());
+        SVG text;
         switch (holder.getItemViewType()) {
             case ELEMENTS_FRAG:
                 Elements vhElements = (Elements) holder;
-                vhElements.ivHomeTemp.setImageResource(id);
+                vhElements.ivHomeTemp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(final View v) {
+                        if (sendResponseObj != null) {
+                            sendResponseObj.sendSvgString(response);
+                        }
+                    }
+                });
+                try {
+                    text = SVG.getFromString(CommonUtils.renderText(response));
+                    Drawable drawable = new PictureDrawable(text.renderToPicture());
+                    vhElements.ivHomeTemp.setImageDrawable(drawable);
+                } catch (SVGParseException e) {
+                    e.printStackTrace();
+                }
+
                 break;
             default:
                 break;
@@ -62,7 +96,7 @@ public class EditorCommonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemCount() {
-        return imageIds.size();
+        return svgImages.size();
     }
 
     @Override

@@ -14,16 +14,18 @@ import java.util.ArrayList;
 
 import example.com.slate.R;
 import example.com.slate.adapter.SelectedColorsAdapter;
-import util.AddColorInterface;
+import example.com.slate.model.CommonResponse;
+import example.com.slate.model.EditorColors;
+import util.CommonInterface;
 
 /**
  * Created by mark-42 on 2/6/17.
  */
 
-public class ColorPickerFragment extends BaseFragment implements AddColorInterface {
+public class ColorPickerFragment extends BaseFragment implements CommonInterface {
     private static final String TAG = ColorPickerFragment.class.getName();
     private RecyclerView rvSelectedColors;
-    private ArrayList<Integer> colorIds;
+    private ArrayList<EditorColors> colorIds;
     private SelectedColorsAdapter adapter;
 
     @Nullable
@@ -44,14 +46,13 @@ public class ColorPickerFragment extends BaseFragment implements AddColorInterfa
         rvSelectedColors = (RecyclerView) view.findViewById(R.id.rvCommonFragment);
         rvSelectedColors.setLayoutManager(new GridLayoutManager(getContext(), 6));
         colorIds = new ArrayList<>();
-        colorIds.add(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
-        colorIds.add(ContextCompat.getColor(getContext(), R.color.firstColor));
-        colorIds.add(ContextCompat.getColor(getContext(), R.color.secondColor));
-        colorIds.add(ContextCompat.getColor(getContext(), R.color.thirdColor));
-        colorIds.add(ContextCompat.getColor(getContext(), R.color.fourthColor));
-        colorIds.add(ContextCompat.getColor(getContext(), R.color.fifthColor));
-        colorIds.add(ContextCompat.getColor(getContext(), R.color.sixthColor));
-
+        addColorToList(ContextCompat.getColor(getContext(), R.color.colorPrimaryDark));
+        addColorToList(ContextCompat.getColor(getContext(), R.color.firstColor));
+        addColorToList(ContextCompat.getColor(getContext(), R.color.secondColor));
+        addColorToList(ContextCompat.getColor(getContext(), R.color.thirdColor));
+        addColorToList(ContextCompat.getColor(getContext(), R.color.fourthColor));
+        addColorToList(ContextCompat.getColor(getContext(), R.color.fifthColor));
+        addColorToList(ContextCompat.getColor(getContext(), R.color.sixthColor));
         adapter = new SelectedColorsAdapter(getContext(), colorIds, this);
         rvSelectedColors.setAdapter(adapter);
     }
@@ -59,7 +60,22 @@ public class ColorPickerFragment extends BaseFragment implements AddColorInterfa
     @Override
     public void addColor(final int colorId) {
         Log.i(TAG, String.valueOf(colorId));
-        colorIds.add(colorId);
+        addColorToList(colorId);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void sendSvgString(final CommonResponse response) {
+
+    }
+
+    /**
+     * @param colorId id of the color
+     */
+    private void addColorToList(final int colorId) {
+        EditorColors colors = new EditorColors();
+        colors.setColorId(colorId);
+        colors.setSelected(false);
+        colorIds.add(colors);
     }
 }
