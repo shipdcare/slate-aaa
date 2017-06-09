@@ -14,9 +14,9 @@ public class Objects {
     @SerializedName("y")
     private int y;
     @SerializedName("width")
-    private double width;
+    private int width;
     @SerializedName("height")
-    private double height;
+    private int height;
     @SerializedName("fill")
     private String fill;
     @SerializedName("stroke")
@@ -122,19 +122,19 @@ public class Objects {
         this.y = y;
     }
 
-    public double getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(int width) {
         this.width = width;
     }
 
-    public double getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 

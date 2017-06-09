@@ -78,6 +78,7 @@ public class CustomCanvasView extends View implements AppConstant {
 
     @Override
     protected void onDraw(final Canvas canvas) {
+        Log.w(TAG, "onDraw");
         mCanvas = canvas;
         for (CommonResponse data : mObj) {
             strSvg = CommonUtils.renderText(data);
@@ -95,6 +96,7 @@ public class CustomCanvasView extends View implements AppConstant {
 
     @Override
     public boolean onTouchEvent(final MotionEvent event) {
+        Log.w(TAG, "onTouch");
         boolean handled = false;
         mScaleDetector.onTouchEvent(event);
         CommonResponse touchedObj;
@@ -110,6 +112,7 @@ public class CustomCanvasView extends View implements AppConstant {
                 yTouch = (int) event.getY(0);
                 touchedObj = getTouchedObj(xTouch, yTouch);
                 if (touchedObj != null) {
+                    Log.w(TAG, "found");
                     mObjPointer.put(event.getPointerId(0), touchedObj);
                 }
                 invalidate();
@@ -162,7 +165,7 @@ public class CustomCanvasView extends View implements AppConstant {
         }
 
 
-        return handled;
+        return super.onTouchEvent(event) || handled;
     }
 
     /**
@@ -176,24 +179,40 @@ public class CustomCanvasView extends View implements AppConstant {
         CommonResponse touched = null;
 
         for (CommonResponse obj : mObj) {
-            Log.i("getx", String.valueOf(obj.getObjects().getX()));
-            Log.i("gety", String.valueOf(obj.getObjects().getY()));
-            Log.i("xtouch", String.valueOf(xTouch));
-            Log.i("ytouch", String.valueOf(yTouch));
-            if ((obj.getObjects().getX() - xTouch) * (obj.getObjects().getX() - xTouch) +
-                    (obj.getObjects().getY() - yTouch) * (obj.getObjects().getY() - yTouch) <= obj.getObjects().getX()
-                    * obj.getObjects().getY()) {
-                touched = obj;
-                break;
+            Log.w("getx", String.valueOf(obj.getObjects().getX()));
+            Log.w("gety", String.valueOf(obj.getObjects().getY()));
+            Log.w("xtouch", String.valueOf(xTouch));
+            Log.w("ytouch", String.valueOf(yTouch));
+
+            int objStartX = obj.getObjects().getX();
+            int objStartY = obj.getObjects().getY() - 50;
+
+            int objectEndX = objStartX + obj.getViewBox().getWidth() + 50;
+            int objectEndY = objStartY + obj.getViewBox().getHeight();
+
+            if (xTouch >= objStartX && xTouch <= objectEndX) {
+                if (yTouch >= objStartY && yTouch <= objectEndY) {
+                    Log.w(TAG, "entered");
+                    touched = obj;
+                    break;
+                }
             }
+
+
+               /* if ((obj.getObjects().getX() - xTouch) * (obj.getObjects().getX() - xTouch) +
+                        (obj.getObjects().getY() - yTouch) * (obj.getObjects().getY() - yTouch) <= obj.getObjects().getX()
+                        * obj.getObjects().getY()) {
+                    touched = obj;
+                    break;
+                }*/
         }
 
         return touched;
     }
 
     public void receiveObj(final CommonResponse response) {
-        response.getObjects().setX(mCanvas.getWidth() / 2);
-        response.getObjects().setY(mCanvas.getHeight() / 2);
+        /*response.getObjects().setX(mCanvas.getWidth() / 2);
+        response.getObjects().setY(mCanvas.getHeight() / 2);*/
         mObj.add(response);
         invalidate();
     }

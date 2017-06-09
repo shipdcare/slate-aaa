@@ -50,10 +50,10 @@ public class TextFragment extends BaseFragment {
         viewBox = new ViewBox();
         viewBox.setWidth(150);
         viewBox.setHeight(150);
-        data.setX(10);
-        data.setY(75);
+        data.setX(0);
+        data.setY(25);
         data.setFill("#ffffff");
-        data.setFontSize(50);
+        data.setFontSize(25);
         response.setViewBox(viewBox);
         response.setObjects(data);
         list.add(response);
