@@ -69,6 +69,16 @@ public class ColorPickerFragment extends BaseFragment implements CommonInterface
 
     }
 
+    @Override
+    public void changedFontSize(final CommonResponse response) {
+
+    }
+
+    @Override
+    public void changeFontColor(final CommonResponse response, final int color) {
+
+    }
+
     /**
      * @param colorId id of the color
      */

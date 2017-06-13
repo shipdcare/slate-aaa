@@ -16,4 +16,9 @@ public interface CommonInterface {
      * @param response common response object
      */
     void sendSvgString(CommonResponse response);
+
+    void changedFontSize(CommonResponse response);
+
+    void changeFontColor(CommonResponse response, int color);
+
 }

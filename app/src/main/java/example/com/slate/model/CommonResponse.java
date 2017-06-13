@@ -2,6 +2,8 @@ package example.com.slate.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import example.com.slate.model.svgtext.SvgTextProperties;
+
 /**
  * Created by mark-42 on 1/6/17.
  */
@@ -11,8 +13,8 @@ public class CommonResponse {
     @SerializedName("viewbox")
     private ViewBox viewBox;
 
-    @SerializedName("objects")
-    private Objects objects;
+    @SerializedName("svgTextProperties")
+    private SvgTextProperties svgTextProperties;
 
     /**
      * @return object of the view box
@@ -29,16 +31,16 @@ public class CommonResponse {
     }
 
     /**
-     * @return object of the objects class
+     * @return object of the svgTextProperties class
      */
-    public Objects getObjects() {
-        return objects;
+    public SvgTextProperties getSvgTextProperties() {
+        return svgTextProperties;
     }
 
     /**
-     * @param objects object of the objects class
+     * @param svgTextProperties object of the svgTextProperties class
      */
-    public void setObjects(final Objects objects) {
-        this.objects = objects;
+    public void setSvgTextProperties(final SvgTextProperties svgTextProperties) {
+        this.svgTextProperties = svgTextProperties;
     }
 }

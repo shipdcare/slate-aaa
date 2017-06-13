@@ -21,5 +21,8 @@ public interface AppConstant {
     float MIN_SCALE_VAL = 10f;
     float MAX_SCALE_VAL = 50f;
 
+    int MODE_ADAPTER_CLICK = 301;
+    int MODE_TEXT_FRAG = 302;
+
 
 }

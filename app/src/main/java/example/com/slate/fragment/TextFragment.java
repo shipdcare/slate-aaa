@@ -11,12 +11,10 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 
 import example.com.slate.R;
-import example.com.slate.activity.EditorActivity;
 import example.com.slate.adapter.EditorCommonAdapter;
 import example.com.slate.model.CommonResponse;
-import example.com.slate.model.Objects;
+import example.com.slate.model.svgtext.SvgTextProperties;
 import example.com.slate.model.ViewBox;
-import util.CommonInterface;
 
 /**
  * Created by mark-42 on 1/6/17.
@@ -26,7 +24,7 @@ public class TextFragment extends BaseFragment {
     private RecyclerView rvInstaFrag;
     private ArrayList<CommonResponse> list;
     private CommonResponse response;
-    private Objects data;
+    private SvgTextProperties data;
     private ViewBox viewBox;
 
     @Nullable
@@ -45,20 +43,28 @@ public class TextFragment extends BaseFragment {
     private void init(final View view) {
         rvInstaFrag = (RecyclerView) view.findViewById(R.id.rvCommonFragment);
         list = new ArrayList<>();
-        response = new CommonResponse();
-        data = new Objects();
-        viewBox = new ViewBox();
-        viewBox.setWidth(150);
-        viewBox.setHeight(150);
-        data.setX(0);
-        data.setY(25);
-        data.setFill("#ffffff");
-        data.setFontSize(25);
-        response.setViewBox(viewBox);
-        response.setObjects(data);
-        list.add(response);
+        addData("HelloWorld!");
+        addData("Yes");
+        addData("Happy Birthday");
+        addData("Sup!");
         EditorCommonAdapter adapter = new EditorCommonAdapter(getContext(), list, ELEMENTS_FRAG);
         rvInstaFrag.setLayoutManager(new GridLayoutManager(getContext(), 3));
         rvInstaFrag.setAdapter(adapter);
+    }
+
+    private void addData(final String text) {
+        response = new CommonResponse();
+        data = new SvgTextProperties();
+        viewBox = new ViewBox();
+        viewBox.setHeight(150);
+        viewBox.setWidth(150);
+        data.setX(0);
+        data.setY(50);
+        data.setFill("#ffffff");
+        data.setFontSize(25);
+        data.setText(text);
+        response.setViewBox(viewBox);
+        response.setSvgTextProperties(data);
+        list.add(response);
     }
 }

@@ -15,9 +15,10 @@ import com.caverock.androidsvg.SVGParseException;
 
 import java.util.HashSet;
 
+import example.com.slate.activity.EditorActivity;
 import example.com.slate.constant.AppConstant;
 import example.com.slate.model.CommonResponse;
-import example.com.slate.model.Objects;
+import example.com.slate.model.svgtext.SvgTextProperties;
 
 /**
  * Created by mark-42 on 8/6/17.
@@ -27,7 +28,7 @@ public class CustomCanvasView extends View implements AppConstant {
 
     private static final String TAG = CustomCanvasView.class.getName();
     private ScaleGestureDetector mScaleDetector;
-    private Objects data;
+    private SvgTextProperties data;
     private float mScaleFactor = SCALE_FACTOR;
     private int mMode;
     private HashSet<CommonResponse> mObj = new HashSet<>();
@@ -35,7 +36,6 @@ public class CustomCanvasView extends View implements AppConstant {
     private Context mContext;
     private String strSvg;
     private SVG svg;
-    private Canvas mCanvas;
 
     /**
      * @param context context of the class
@@ -79,7 +79,6 @@ public class CustomCanvasView extends View implements AppConstant {
     @Override
     protected void onDraw(final Canvas canvas) {
         Log.w(TAG, "onDraw");
-        mCanvas = canvas;
         for (CommonResponse data : mObj) {
             strSvg = CommonUtils.renderText(data);
             Log.i("svg", strSvg);
@@ -107,42 +106,42 @@ public class CustomCanvasView extends View implements AppConstant {
         switch (event.getActionMasked()) {
             case MotionEvent.ACTION_DOWN:
                 Log.w(TAG, "Down");
-                mMode = DRAG;
                 xTouch = (int) event.getX(0);
                 yTouch = (int) event.getY(0);
                 touchedObj = getTouchedObj(xTouch, yTouch);
                 if (touchedObj != null) {
                     Log.w(TAG, "found");
                     mObjPointer.put(event.getPointerId(0), touchedObj);
+                    ((EditorActivity) mContext).getSvgTextObj(touchedObj);
                 }
                 invalidate();
                 handled = true;
                 break;
             case MotionEvent.ACTION_MOVE:
-                if (mMode == DRAG) {
-                    final int pointerCount = event.getPointerCount();
+                final int pointerCount = event.getPointerCount();
 
-                    Log.w(TAG, "Move");
+                Log.w(TAG, "Move");
 
-                    for (actionIndex = 0; actionIndex < pointerCount; actionIndex++) {
-                        // Some pointer has moved, search it by pointer id
-                        pointerId = event.getPointerId(actionIndex);
+                for (actionIndex = 0; actionIndex < pointerCount; actionIndex++) {
+                    // Some pointer has moved, search it by pointer id
+                    pointerId = event.getPointerId(actionIndex);
 
-                        xTouch = (int) event.getX(actionIndex);
-                        yTouch = (int) event.getY(actionIndex);
+                    xTouch = (int) event.getX(actionIndex);
+                    yTouch = (int) event.getY(actionIndex);
 
-                        touchedObj = mObjPointer.get(pointerId);
+                    touchedObj = mObjPointer.get(pointerId);
 
-                        if (null != touchedObj) {
-                            touchedObj.getObjects().setX(xTouch);
-                            touchedObj.getObjects().setY(yTouch);
-                        }
+                    if (null != touchedObj) {
+                        touchedObj.getSvgTextProperties().setX(xTouch);
+                        touchedObj.getSvgTextProperties().setY(yTouch);
                     }
-                    invalidate();
                 }
+                invalidate();
                 break;
             case MotionEvent.ACTION_UP:
                 mMode = NONE;
+                pointerId = event.getPointerId(actionIndex);
+                mObjPointer.remove(pointerId);
                 invalidate();
                 handled = true;
                 break;
@@ -173,19 +172,19 @@ public class CustomCanvasView extends View implements AppConstant {
      *
      * @param xTouch int x touch coordinate
      * @param yTouch int y touch coordinate
-     * @return {@link Objects} touched circle or null if no circle has been touched
+     * @return {@link SvgTextProperties} touched circle or null if no circle has been touched
      */
     private CommonResponse getTouchedObj(final int xTouch, final int yTouch) {
         CommonResponse touched = null;
 
         for (CommonResponse obj : mObj) {
-            Log.w("getx", String.valueOf(obj.getObjects().getX()));
-            Log.w("gety", String.valueOf(obj.getObjects().getY()));
+            /*Log.w("getx", String.valueOf(obj.getSvgTextProperties().getX()));
+            Log.w("gety", String.valueOf(obj.getSvgTextProperties().getY()));
             Log.w("xtouch", String.valueOf(xTouch));
-            Log.w("ytouch", String.valueOf(yTouch));
+            Log.w("ytouch", String.valueOf(yTouch));*/
 
-            int objStartX = obj.getObjects().getX();
-            int objStartY = obj.getObjects().getY() - 50;
+            int objStartX = obj.getSvgTextProperties().getX();
+            int objStartY = obj.getSvgTextProperties().getY() - 50;
 
             int objectEndX = objStartX + obj.getViewBox().getWidth() + 50;
             int objectEndY = objStartY + obj.getViewBox().getHeight();
@@ -197,24 +196,40 @@ public class CustomCanvasView extends View implements AppConstant {
                     break;
                 }
             }
-
-
-               /* if ((obj.getObjects().getX() - xTouch) * (obj.getObjects().getX() - xTouch) +
-                        (obj.getObjects().getY() - yTouch) * (obj.getObjects().getY() - yTouch) <= obj.getObjects().getX()
-                        * obj.getObjects().getY()) {
-                    touched = obj;
-                    break;
-                }*/
         }
 
         return touched;
     }
 
-    public void receiveObj(final CommonResponse response) {
-        /*response.getObjects().setX(mCanvas.getWidth() / 2);
-        response.getObjects().setY(mCanvas.getHeight() / 2);*/
-        mObj.add(response);
-        invalidate();
+    public void receiveObj(final CommonResponse response, final int mMode) {
+        switch (mMode) {
+            case MODE_ADAPTER_CLICK:
+                mObj.add(response);
+                invalidate();
+                break;
+            case MODE_TEXT_FRAG:
+                if (mObj.contains(response)) {
+                    for (CommonResponse obj : mObj) {
+                        if (obj.equals(response)) {
+                            obj.getSvgTextProperties().setFontSize(response.getSvgTextProperties().getFontSize());
+                            invalidate();
+                        }
+                    }
+                }
+            default:
+                break;
+        }
+    }
+
+    public void changeFontColor(final CommonResponse response, final int colorId) {
+        if (mObj.contains(response)) {
+            for (CommonResponse obj : mObj) {
+                if (obj.equals(response)) {
+                    obj.getSvgTextProperties().setFill(String.format("#%06X", (0xFFFFFF & colorId)));
+                    invalidate();
+                }
+            }
+        }
     }
 
 

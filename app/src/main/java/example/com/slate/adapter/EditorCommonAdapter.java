@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGParseException;
@@ -19,7 +20,6 @@ import example.com.slate.constant.AppConstant;
 import example.com.slate.model.CommonResponse;
 import util.CommonInterface;
 import util.CommonUtils;
-import util.InstaImageView;
 
 /**
  * Created by mark-42 on 1/6/17.
@@ -57,7 +57,7 @@ public class EditorCommonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         View view;
         switch (viewType) {
             case ELEMENTS_FRAG:
-                view = LayoutInflater.from(mContext).inflate(R.layout.grid_insta_rowlayout, parent, false);
+                view = LayoutInflater.from(mContext).inflate(R.layout.text_frag_rowlayout, parent, false);
                 return new Elements(view);
             default:
                 return null;
@@ -71,7 +71,7 @@ public class EditorCommonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         switch (holder.getItemViewType()) {
             case ELEMENTS_FRAG:
                 Elements vhElements = (Elements) holder;
-                vhElements.ivHomeTemp.setOnClickListener(new View.OnClickListener() {
+                vhElements.ivText.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(final View v) {
                         if (sendResponseObj != null) {
@@ -82,7 +82,7 @@ public class EditorCommonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 try {
                     text = SVG.getFromString(CommonUtils.renderText(response));
                     Drawable drawable = new PictureDrawable(text.renderToPicture());
-                    vhElements.ivHomeTemp.setImageDrawable(drawable);
+                    vhElements.ivText.setImageDrawable(drawable);
                 } catch (SVGParseException e) {
                     e.printStackTrace();
                 }
@@ -113,14 +113,14 @@ public class EditorCommonAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
      * View holder of Elements fragment
      */
     private final class Elements extends RecyclerView.ViewHolder {
-        private InstaImageView ivHomeTemp;
+        private ImageView ivText;
 
         /**
          * @param itemView object holding view to be inflated
          */
         private Elements(final View itemView) {
             super(itemView);
-            ivHomeTemp = (InstaImageView) itemView.findViewById(R.id.ivInstaGridView);
+            ivText = (ImageView) itemView.findViewById(R.id.ivText);
         }
     }
 }

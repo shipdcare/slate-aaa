@@ -1,4 +1,4 @@
-package example.com.slate.model;
+package example.com.slate.model.svgpath;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,14 +9,14 @@ public class Objects {
     private String originX;
     @SerializedName("originY")
     private String originY;
-    @SerializedName("x")
-    private int x;
-    @SerializedName("y")
-    private int y;
+    @SerializedName("left")
+    private double left;
+    @SerializedName("top")
+    private double top;
     @SerializedName("width")
-    private int width;
+    private double width;
     @SerializedName("height")
-    private int height;
+    private double height;
     @SerializedName("fill")
     private String fill;
     @SerializedName("stroke")
@@ -42,7 +42,7 @@ public class Objects {
     @SerializedName("flipY")
     private boolean flipY;
     @SerializedName("opacity")
-    private int opacity;
+    private double opacity;
     @SerializedName("shadow")
     private String shadow;
     @SerializedName("visible")
@@ -61,26 +61,10 @@ public class Objects {
     private int skewX;
     @SerializedName("skewY")
     private int skewY;
-    @SerializedName("text")
-    private String text;
-    @SerializedName("fontSize")
-    private int fontSize;
-    @SerializedName("fontWeight")
-    private String fontWeight;
-    @SerializedName("fontFamily")
-    private String fontFamily;
-    @SerializedName("fontStyle")
-    private String fontStyle;
-    @SerializedName("lineHeight")
-    private double lineHeight;
-    @SerializedName("textDecoration")
-    private String textDecoration;
-    @SerializedName("textAlign")
-    private String textAlign;
-    @SerializedName("textBackgroundColor")
-    private String textBackgroundColor;
-    @SerializedName("charSpacing")
-    private int charSpacing;
+    @SerializedName("pathOffset")
+    private PathOffset pathOffset;
+    @SerializedName("path")
+    private String path;
 
     public String getType() {
         return type;
@@ -106,35 +90,35 @@ public class Objects {
         this.originY = originY;
     }
 
-    public int getX() {
-        return x;
+    public double getLeft() {
+        return left;
     }
 
-    public void setX(int x) {
-        this.x = x;
+    public void setLeft(double left) {
+        this.left = left;
     }
 
-    public int getY() {
-        return y;
+    public double getTop() {
+        return top;
     }
 
-    public void setY(int y) {
-        this.y = y;
+    public void setTop(double top) {
+        this.top = top;
     }
 
-    public int getWidth() {
+    public double getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(double width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public double getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(double height) {
         this.height = height;
     }
 
@@ -234,11 +218,11 @@ public class Objects {
         this.flipY = flipY;
     }
 
-    public int getOpacity() {
+    public double getOpacity() {
         return opacity;
     }
 
-    public void setOpacity(int opacity) {
+    public void setOpacity(double opacity) {
         this.opacity = opacity;
     }
 
@@ -314,83 +298,19 @@ public class Objects {
         this.skewY = skewY;
     }
 
-    public String getText() {
-        return text;
+    public PathOffset getPathOffset() {
+        return pathOffset;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public void setPathOffset(PathOffset pathOffset) {
+        this.pathOffset = pathOffset;
     }
 
-    public int getFontSize() {
-        return fontSize;
+    public String getPath() {
+        return path;
     }
 
-    public void setFontSize(int fontSize) {
-        this.fontSize = fontSize;
-    }
-
-    public String getFontWeight() {
-        return fontWeight;
-    }
-
-    public void setFontWeight(String fontWeight) {
-        this.fontWeight = fontWeight;
-    }
-
-    public String getFontFamily() {
-        return fontFamily;
-    }
-
-    public void setFontFamily(String fontFamily) {
-        this.fontFamily = fontFamily;
-    }
-
-    public String getFontStyle() {
-        return fontStyle;
-    }
-
-    public void setFontStyle(String fontStyle) {
-        this.fontStyle = fontStyle;
-    }
-
-    public double getLineHeight() {
-        return lineHeight;
-    }
-
-    public void setLineHeight(double lineHeight) {
-        this.lineHeight = lineHeight;
-    }
-
-    public String getTextDecoration() {
-        return textDecoration;
-    }
-
-    public void setTextDecoration(String textDecoration) {
-        this.textDecoration = textDecoration;
-    }
-
-    public String getTextAlign() {
-        return textAlign;
-    }
-
-    public void setTextAlign(String textAlign) {
-        this.textAlign = textAlign;
-    }
-
-    public String getTextBackgroundColor() {
-        return textBackgroundColor;
-    }
-
-    public void setTextBackgroundColor(String textBackgroundColor) {
-        this.textBackgroundColor = textBackgroundColor;
-    }
-
-    public int getCharSpacing() {
-        return charSpacing;
-    }
-
-    public void setCharSpacing(int charSpacing) {
-        this.charSpacing = charSpacing;
+    public void setPath(String path) {
+        this.path = path;
     }
 }

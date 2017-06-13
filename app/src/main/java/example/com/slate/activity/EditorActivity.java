@@ -13,6 +13,7 @@ import java.util.List;
 import example.com.slate.R;
 import example.com.slate.adapter.PagerAdapter;
 import example.com.slate.fragment.ColorPickerFragment;
+import example.com.slate.fragment.TextEditFragment;
 import example.com.slate.fragment.TextFragment;
 import example.com.slate.model.CommonResponse;
 import util.CommonInterface;
@@ -28,13 +29,14 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
     private TextView tvText, tvElements, tvLayouts, tvPages;
     private LinearLayout llCanvas;
     private CustomCanvasView mCustomCanvasView;
+    private PagerAdapter adapter;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editor);
         init();
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager(), fragmentList);
+        adapter = new PagerAdapter(getSupportFragmentManager(), fragmentList);
         pager.setAdapter(adapter);
         pager.addOnPageChangeListener(this);
         pager.setCurrentItem(0);
@@ -57,6 +59,7 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
         tvPages.setOnClickListener(this);
         fragmentList.add(new ColorPickerFragment());
         fragmentList.add(new TextFragment());
+        fragmentList.add(new TextEditFragment());
         llCanvas = (LinearLayout) findViewById(R.id.llCanvas);
         mCustomCanvasView = new CustomCanvasView(this);
         llCanvas.addView(mCustomCanvasView);
@@ -135,6 +138,23 @@ public class EditorActivity extends BaseActivity implements ViewPager.OnPageChan
 
     @Override
     public void sendSvgString(final CommonResponse response) {
-        mCustomCanvasView.receiveObj(response);
+        mCustomCanvasView.receiveObj(response, MODE_ADAPTER_CLICK);
+    }
+
+    @Override
+    public void changedFontSize(final CommonResponse response) {
+        mCustomCanvasView.receiveObj(response, MODE_TEXT_FRAG);
+    }
+
+    @Override
+    public void changeFontColor(final CommonResponse response, final int color) {
+        mCustomCanvasView.changeFontColor(response, color);
+    }
+
+
+    public void getSvgTextObj(final CommonResponse response) {
+        TextEditFragment f = (TextEditFragment) adapter.instantiateItem(pager, 2);
+        f.getSvgObj(response);
+        pager.setCurrentItem(2);
     }
 }

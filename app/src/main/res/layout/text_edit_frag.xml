@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_normal">
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivChangeColor"
+            style="@style/colorViews"
+            android:layout_alignParentEnd="true"
+            android:background="@color/sixthColor"
+            app:riv_corner_radius="30dp"
+            app:riv_mutate_background="true"
+            app:riv_oval="true"/>
+
+        <LinearLayout
+            android:id="@+id/llTextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivChangeColor"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@color/bottomNavBg"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:padding="@dimen/spacing_tiny">
+
+            <LinearLayout
+                style="@style/llTextEditFrag">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_format_align_center_black_24dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/llTextEditFrag">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_format_bold_black_24dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/llTextEditFrag">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_format_italic_black_24dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/llTextEditFrag"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spacing"
+                    android:textColor="@color/colorWhite"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llTextAppearance"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:background="@color/bottomNavBg"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:padding="@dimen/spacing_small"
+                android:text="@string/size"
+                android:textColor="@color/colorWhite"/>
+
+            <android.support.v7.widget.AppCompatSeekBar
+                android:id="@+id/sbFontSize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.7"
+                android:max="100"
+                android:progress="0"/>
+
+            <TextView
+                android:id="@+id/tvFontSize"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:text="0"
+                android:gravity="center"
+                android:textColor="@color/colorWhite"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</ScrollView>
