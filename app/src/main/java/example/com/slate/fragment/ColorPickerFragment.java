@@ -16,7 +16,6 @@ import example.com.slate.R;
 import example.com.slate.adapter.SelectedColorsAdapter;
 import example.com.slate.model.CommonResponse;
 import example.com.slate.model.EditorColors;
-import util.CommonInterface;
 
 /**
  * Created by mark-42 on 2/6/17.

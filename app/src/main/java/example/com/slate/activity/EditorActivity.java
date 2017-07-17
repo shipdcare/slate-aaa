@@ -16,7 +16,6 @@ import example.com.slate.fragment.ColorPickerFragment;
 import example.com.slate.fragment.TextEditFragment;
 import example.com.slate.fragment.TextFragment;
 import example.com.slate.model.CommonResponse;
-import util.CommonInterface;
 import util.CustomCanvasView;
 import util.CustomViewPager;
 

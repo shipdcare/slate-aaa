@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import example.com.slate.R;
 import example.com.slate.constant.AppConstant;
 import example.com.slate.model.EditorColors;
-import util.CommonInterface;
 
 /**
  * Created by mark-42 on 2/6/17.

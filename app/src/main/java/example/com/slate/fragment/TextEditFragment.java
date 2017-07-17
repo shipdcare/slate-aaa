@@ -19,7 +19,6 @@ import com.flask.colorpicker.builder.ColorPickerDialogBuilder;
 import example.com.slate.R;
 import example.com.slate.activity.EditorActivity;
 import example.com.slate.model.CommonResponse;
-import util.CommonInterface;
 
 /**
  * Created by mark-42 on 12/6/17.

@@ -18,7 +18,6 @@ import example.com.slate.R;
 import example.com.slate.activity.EditorActivity;
 import example.com.slate.constant.AppConstant;
 import example.com.slate.model.CommonResponse;
-import util.CommonInterface;
 import util.CommonUtils;
 
 /**
